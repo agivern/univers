@@ -1,0 +1,36 @@
+# Project: Project1
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = main.o freeflycamera.o vector3d.o $(RES)
+LINKOBJ  = main.o freeflycamera.o vector3d.o $(RES)
+LIBS =  -L"lib" -mwindows -lopengl32 -lmingw32  -lSDLmain  -lSDL  -lSDL_image  -lSDL_ttf ../../lib/libfmodexL.a ../../lib/libfmodex.a -lmysql ../../lib/libopengl32.a ../../lib/libglu32.a  
+INCS =  -I"include" 
+CXXINCS =  -I"lib/gcc/mingw32/3.4.2/include"  -I"include/c++/3.4.2/backward"  -I"include/c++/3.4.2/mingw32"  -I"include/c++/3.4.2"  -I"include" 
+BIN  = Project1.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before Project1.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "Project1.exe" $(LIBS)
+
+main.o: main.cpp sdlglutils.h freeflycamera.h vector3d.h
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+freeflycamera.o: freeflycamera.cpp freeflycamera.h vector3d.h
+	$(CPP) -c freeflycamera.cpp -o freeflycamera.o $(CXXFLAGS)
+
+vector3d.o: vector3d.cpp vector3d.h
+	$(CPP) -c vector3d.cpp -o vector3d.o $(CXXFLAGS)
